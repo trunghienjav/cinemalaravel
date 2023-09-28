@@ -16,15 +16,14 @@ class CreateFilmsTable extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('status_id')->constrained();
+            $table->foreignId('subtitle_id')->constrained();
             $table->date('start_date');
             $table->date('end_date');
             $table->string('national');
-            $table->integer('category');
-            $table->string('duration')->nullable();
-            $table->integer('status');
+            $table->time('duration')->nullable();
             $table->text('description')->nullable();
-            $table->integer('subtitle')->nullable();
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
